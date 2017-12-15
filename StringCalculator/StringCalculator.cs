@@ -11,13 +11,16 @@ namespace StringCalculatorKata
 
         public int Add(string stringNumbers)
         {
-            if (String.IsNullOrWhiteSpace(stringNumbers)) return 0;
             var delimeter = ',';
             var numbers = stringNumbers.Split(delimeter);
             var sum = 0;
             for (int i = 0; i < numbers.Length; i++)
             {
-                sum += Int32.Parse(numbers[i]);
+                int number;
+                if (Int32.TryParse(numbers[i], out number))
+                {
+                    sum += number;
+                }
             }
             return sum;
         }
