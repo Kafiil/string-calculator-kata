@@ -22,5 +22,18 @@ namespace StringCalculatorTests
             Assert.Equal(result, 0);
         }
 
+        [Theory]
+        [InlineData("0", 0)]
+        [InlineData("1", 1)]
+        [InlineData("2", 2)]
+        [InlineData("3", 3)]
+        public void Should_return_a_number_if_only_one_parameter(string input, int expected)
+        {
+            //When
+            var result = _stringCalculator.Add(input);
+            //Then
+            Assert.Equal(result, expected);
+        }
+
     }
 }
