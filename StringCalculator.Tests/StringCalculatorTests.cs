@@ -46,5 +46,16 @@ namespace StringCalculatorTests
             Assert.Equal(result, expected);
         }
 
+        [Theory]
+        [InlineData("1\n2\n3", 6)]
+        [InlineData("1\n2,3", 6)]
+        public void Should_also_handle_new_line(string input, int expected)
+        {
+            //When
+            var result = _stringCalculator.Add(input);
+            //Then
+            Assert.Equal(result, expected);
+        }
+
     }
 }

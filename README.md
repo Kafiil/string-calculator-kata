@@ -21,7 +21,7 @@ Remember to solve things as simply as possible so that you force yourself to wri
 
 Remember to refactor after each passing test
 
-2. Allow the Add method to handle an unknown amount of numbers1
+2. Allow the Add method to handle an unknown amount of numbers
 
 3. Allow the Add method to handle new lines between numbers (instead of commas).
 

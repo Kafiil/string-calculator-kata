@@ -12,7 +12,13 @@ namespace StringCalculatorKata
         public int Add(string stringNumbers)
         {
             var delimeter = ',';
+
+            //replace new lines with commas
+            stringNumbers = stringNumbers.Replace('\n', ',');
+
+            //construct array of numbers
             var numbers = stringNumbers.Split(delimeter);
+
             var sum = 0;
             for (int i = 0; i < numbers.Length; i++)
             {
