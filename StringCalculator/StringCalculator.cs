@@ -4,17 +4,19 @@ namespace StringCalculatorKata
 {
     public class StringCalculator
     {
-        public StringCalculator()
-        {
-
-        }
 
         public int Add(string stringNumbers)
         {
             var delimeter = ',';
+            if (stringNumbers.StartsWith("//"))
+            {
+                stringNumbers = stringNumbers.Substring(2);
+                delimeter = GetDelimiterFromStringInput(stringNumbers);
+            }
 
-            //replace new lines with commas
-            stringNumbers = stringNumbers.Replace('\n', ',');
+
+            //replace new lines with delimeter
+            stringNumbers = stringNumbers.Replace('\n', delimeter);
 
             //construct array of numbers
             var numbers = stringNumbers.Split(delimeter);
@@ -29,6 +31,11 @@ namespace StringCalculatorKata
                 }
             }
             return sum;
+        }
+
+        private char GetDelimiterFromStringInput(string stringNumbers)
+        {
+            return stringNumbers.Split('\n')[0].ToCharArray()[0];
         }
     }
 }

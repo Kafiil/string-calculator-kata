@@ -49,10 +49,20 @@ namespace StringCalculatorTests
         [Theory]
         [InlineData("1\n2\n3", 6)]
         [InlineData("1\n2,3", 6)]
+        [InlineData("\n1\n2,3", 6)]
         public void Should_also_handle_new_line(string input, int expected)
         {
             //When
             var result = _stringCalculator.Add(input);
+            //Then
+            Assert.Equal(result, expected);
+        }
+
+        [Theory]
+        [InlineData("//;\n1;2",3)]
+        public void Should_handle_another_delimiter(string input,int expected)
+        {
+         var result = _stringCalculator.Add(input);
             //Then
             Assert.Equal(result, expected);
         }
