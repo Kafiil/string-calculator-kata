@@ -7,7 +7,10 @@ namespace StringCalculatorKata
 
         public int Add(string stringNumbers)
         {
-            var delimeter = ',';
+            //default delimiter
+            string delimeter = ",";
+
+            //custom delimiter
             if (stringNumbers.StartsWith("//"))
             {
                 stringNumbers = stringNumbers.Substring(2);
@@ -16,12 +19,13 @@ namespace StringCalculatorKata
 
 
             //replace new lines with delimeter
-            stringNumbers = stringNumbers.Replace('\n', delimeter);
+            stringNumbers = stringNumbers.Replace("\n", delimeter);
 
             //construct array of numbers
-            var numbers = stringNumbers.Split(delimeter);
+            var numbers = stringNumbers.Split(delimeter.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
             var sum = 0;
+
             for (int i = 0; i < numbers.Length; i++)
             {
                 int number;
@@ -33,9 +37,9 @@ namespace StringCalculatorKata
             return sum;
         }
 
-        private char GetDelimiterFromStringInput(string stringNumbers)
+        private string GetDelimiterFromStringInput(String stringNumbers)
         {
-            return stringNumbers.Split('\n')[0].ToCharArray()[0];
+            return stringNumbers.Split('\n')[0];
         }
     }
 }

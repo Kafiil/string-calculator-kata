@@ -18,7 +18,7 @@ namespace StringCalculatorTests
             int result = _stringCalculator.Add(stringNumbers);
 
             //Then
-            Assert.Equal(result, 0);
+            Assert.Equal(0,result);
         }
 
         [Theory]
@@ -60,6 +60,7 @@ namespace StringCalculatorTests
 
         [Theory]
         [InlineData("//;\n1;2",3)]
+        [InlineData("//**\n1**2**3",6)]
         public void Should_handle_another_delimiter(string input,int expected)
         {
          var result = _stringCalculator.Add(input);
