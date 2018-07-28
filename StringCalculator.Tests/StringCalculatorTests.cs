@@ -87,5 +87,15 @@ namespace StringCalculatorTests
             //Then
             Assert.Equal(result, expected);
         }
+
+        [Theory]
+        [InlineData("//[;]\n1;2", 3)]
+        [InlineData("//[***]\n1***2***3", 6)]
+        public void Should_handle_another_delimiter_with_brackets(string input, int expected)
+        {
+            var result = _stringCalculator.Add(input);
+            //Then
+            Assert.Equal(result, expected);
+        }
     }
 }

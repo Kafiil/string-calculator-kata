@@ -49,7 +49,10 @@ namespace StringCalculatorKata
 
         private string GetDelimiterFromStringInput(String stringNumbers)
         {
-            return stringNumbers.Split('\n')[0];
+            var delimiter = stringNumbers.Split('\n')[0];
+            if (delimiter.StartsWith("["))
+                delimiter = delimiter.Substring(1, delimiter.Length - 2);
+            return delimiter;
         }
     }
 }
