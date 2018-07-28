@@ -9,16 +9,15 @@ namespace StringCalculatorTests
         public StringCalculatorTests() { }
         private StringCalculator _stringCalculator = new StringCalculator();
 
-        [Fact]
-        public void Empty_string_should_return_0()
+        [Theory]
+        [InlineData("")]
+        public void Empty_string_should_return_0(String input)
         {
-            //Given
-            var stringNumbers = "";
             //When
-            int result = _stringCalculator.Add(stringNumbers);
+            int result = _stringCalculator.Add(input);
 
             //Then
-            Assert.Equal(0,result);
+            Assert.Equal(0, result);
         }
 
         [Theory]
@@ -59,14 +58,22 @@ namespace StringCalculatorTests
         }
 
         [Theory]
-        [InlineData("//;\n1;2",3)]
-        [InlineData("//**\n1**2**3",6)]
-        public void Should_handle_another_delimiter(string input,int expected)
+        [InlineData("//;\n1;2", 3)]
+        [InlineData("//**\n1**2**3", 6)]
+        public void Should_handle_another_delimiter(string input, int expected)
         {
-         var result = _stringCalculator.Add(input);
+            var result = _stringCalculator.Add(input);
             //Then
             Assert.Equal(result, expected);
         }
 
+        [Theory]
+        [InlineData("//;\n-1;2", "-1 is a negatif number")]
+        [InlineData("//;\n1;-2", "-2 is a negatif number")]
+        public void should_throw_exception_for_negatif_numbers(string input, string errorMessage)
+        {
+            Exception ex = Assert.Throws<NegativeNumberException>(() => _stringCalculator.Add(input));
+            Assert.Equal(errorMessage,ex.Message);
+        }
     }
 }

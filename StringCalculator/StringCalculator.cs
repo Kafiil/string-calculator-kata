@@ -31,6 +31,10 @@ namespace StringCalculatorKata
                 int number;
                 if (Int32.TryParse(numbers[i], out number))
                 {
+                    if (number < 0)
+                    {
+                        throw new NegativeNumberException($"{number} is a negatif number");
+                    }
                     sum += number;
                 }
             }
