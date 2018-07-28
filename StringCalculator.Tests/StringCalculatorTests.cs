@@ -68,12 +68,13 @@ namespace StringCalculatorTests
         }
 
         [Theory]
-        [InlineData("//;\n-1;2", "-1 is a negatif number")]
-        [InlineData("//;\n1;-2", "-2 is a negatif number")]
+        [InlineData("//;\n-1;2", "negatives not allowed: -1")]
+        [InlineData("//;\n-1;-2", "negatives not allowed: -1 -2")]
+        [InlineData("//**\n-1**2**-3", "negatives not allowed: -1 -3")]
         public void should_throw_exception_for_negatif_numbers(string input, string errorMessage)
         {
             Exception ex = Assert.Throws<NegativeNumberException>(() => _stringCalculator.Add(input));
-            Assert.Equal(errorMessage,ex.Message);
+            Assert.Equal(errorMessage, ex.Message);
         }
     }
 }

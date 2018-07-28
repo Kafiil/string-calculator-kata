@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace StringCalculatorKata
 {
@@ -26,6 +28,8 @@ namespace StringCalculatorKata
 
             var sum = 0;
 
+            List<int> negatifs = new List<int>();
+
             for (int i = 0; i < numbers.Length; i++)
             {
                 int number;
@@ -33,11 +37,12 @@ namespace StringCalculatorKata
                 {
                     if (number < 0)
                     {
-                        throw new NegativeNumberException($"{number} is a negatif number");
+                        negatifs.Add(number);
                     }
-                    sum += number;
+                    else sum += number;
                 }
             }
+            if (negatifs.Count > 0) throw new NegativeNumberException(negatifs);
             return sum;
         }
 
