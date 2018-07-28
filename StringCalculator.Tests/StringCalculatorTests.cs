@@ -76,5 +76,16 @@ namespace StringCalculatorTests
             Exception ex = Assert.Throws<NegativeNumberException>(() => _stringCalculator.Add(input));
             Assert.Equal(errorMessage, ex.Message);
         }
+
+
+        [Theory]
+        [InlineData("//;\n1000;2", 2)]
+        [InlineData("//**\n1004**232**3", 235)]
+        public void Should_ignore_numbers_higher_than_1000(string input, int expected)
+        {
+            var result = _stringCalculator.Add(input);
+            //Then
+            Assert.Equal(result, expected);
+        }
     }
 }

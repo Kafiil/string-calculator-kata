@@ -39,7 +39,8 @@ namespace StringCalculatorKata
                     {
                         negatifs.Add(number);
                     }
-                    else sum += number;
+
+                    if (number < 1000) sum += number;
                 }
             }
             if (negatifs.Count > 0) throw new NegativeNumberException(negatifs);
