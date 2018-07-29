@@ -97,5 +97,16 @@ namespace StringCalculatorTests
             //Then
             Assert.Equal(result, expected);
         }
+
+        [Theory]
+        [InlineData("//[*][%]\n1*2%3**%**8", 14)]
+        public void Should_allow_multiple_delimiters_with_brackets(string input, int expected)
+        {
+            var result = _stringCalculator.Add(input);
+            //Then
+            Assert.Equal(expected,result);
+        }
+
+
     }
 }
